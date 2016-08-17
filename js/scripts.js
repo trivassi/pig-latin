@@ -44,7 +44,8 @@ function testAlpha (_inputAlpha){
   for (var i = 0; i < _inputAlpha.length; i++) {
     if(_inputAlpha.charCodeAt(i) < 65
       || _inputAlpha.charCodeAt(i) > 122
-      || (_inputAlpha.charCodeAt(i) > 90 && _inputAlpha.charCodeAt(i) < 97)){
+      || (_inputAlpha.charCodeAt(i) > 90 && _inputAlpha.charCodeAt(i) < 97))
+    {
         return false;
     }
   }
@@ -55,6 +56,9 @@ function testCons(_inputCons) {
   startingConsonants = [];
   for (var i = 0; i < _inputCons.length; i++) {
     if(!vowels.includes(_inputCons[i])){
+      startingConsonants.push(_inputCons[i]);
+    }
+    else if (i === 0 && (_inputCons[0] === "y" || _inputCons[0] === "Y" )) {
       startingConsonants.push(_inputCons[i]);
     }
     else {
