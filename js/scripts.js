@@ -4,16 +4,14 @@ var vowels = ['a','e','i','o','u','y','A','E','I','O','U','Y'];
 var startingConsonants = [];
 
 var loopWords = function(_inputWords){
-  console.log("this should be a string!!!!! : " + _inputWords);
-  console.log(typeof _inputWords);
+  var outputWords = [];
   _inputWords = _inputWords.split(" ");
-  console.log("this should be array of individual words!!!!! : " + _inputWords);
-  console.log(typeof _inputWords);
+
   for (var i = 0; i < _inputWords.length; i++) {
-    _inputWords.push(pigLatinize(_inputWords[i]));
+    outputWords.push(pigLatinize(_inputWords[i]));
   }
 
-  return _inputWords.join(" ");
+  return outputWords.join(" ");
 };
 
 var pigLatinize = function(_input){
@@ -21,9 +19,17 @@ var pigLatinize = function(_input){
   // console.log(output);
   if(testCons(_input)){
     output = output.split(""); // make the string into an array
+
     startingConsonants.forEach(function(consonant){ // for each consonant that we stored in "staringConsonants"...
       output.push(output.shift()); // grab the first element of the output using 'shift', shift the array forward (also a product of shift) and then push that element back onto the end
     });
+
+    if(startingConsonants[startingConsonants.length - 1] === "q"){
+      if (output[0] === "u") {
+        output.push(output.shift());
+      }
+    }
+
     output = output.join(""); // put it back into a string
   }
   // console.log("_input === " + _input);
@@ -60,7 +66,6 @@ function testCons(_inputCons) {
   }
   return false;
 }
-
 
 // Front-End Logic
 $(document).ready(function() {
