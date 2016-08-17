@@ -1,17 +1,26 @@
 // Back-End Logic
-
 var pigLatinize = function(_input){
   var output = _input;
 
-  if((output.charCodeAt(0) >= 65 && output.charCodeAt(0) <= 90)
-    || (output.charCodeAt(0) >= 97 && output.charCodeAt(0) <= 122)){
+  if(testAlpha(output)){
     output += "ay";
   }
+
+  
 
   return output;
 };
 
-
+function testAlpha (_input){
+  for (var i = 0; i < _input.length; i++) {
+    if(_input.charCodeAt(i) < 65
+      || _input.charCodeAt(i) > 122
+      || (_input.charCodeAt(i) > 90 && _input.charCodeAt(i) < 97)){
+        return false;
+    }
+  }
+  return true;
+}
 
 
 
